@@ -20,11 +20,95 @@ namespace CyberSecurityChatbotGUI
         private int score = 0;
         List<TaskItem> tasks = new List<TaskItem>();
 
+
+
         public Form1()
         {
             InitializeComponent();
-            userInputBox.KeyDown += userInputBox_KeyDown;
+
+            // Show landing only, hide everything else
+            pnlLanding.Visible = true;
+            pnlChat.Visible = false;
+            pnlTasks.Visible = false;
+            pnlQuiz.Visible = false;
+            pnlLog.Visible = false;
+            btnStartQuiz.Click += btnStartQuiz_Click;
+
+
+            // Wire up navigation buttons
+            btnGoToTasks.Click += (s, e) =>
+            {
+                pnlLanding.Visible = false;
+                pnlTasks.Visible = true;
+                pnlChat.Visible = false;
+                pnlQuiz.Visible = false;
+            };
+
+            btnGoToQuiz.Click += (s, e) =>
+            {
+                pnlLanding.Visible = false;
+                pnlQuiz.Visible = true;
+                pnlChat.Visible = false;
+                pnlTasks.Visible = false;
+            };
+
+            btnGoToChat.Click += (s, e) =>
+            {
+                pnlLanding.Visible = false;
+                pnlChat.Visible = true;
+                pnlTasks.Visible = false;
+                pnlQuiz.Visible = false;
+            };
+
+            btnGoToLog.Click += (s, e) => ShowPanel("log");
+
         }
+
+        private void btnStartQuiz_Click(object sender, EventArgs e)
+        {
+            grpQuiz.Visible = true;
+            LoadQuizQuestions();
+            currentQuizIndex = 0;
+            score = 0;
+            ShowNextQuizQuestion();
+            AppendToChat("Bot", "Starting quiz via button!");
+        }
+
+
+        private void ShowPanel(string name)
+        {
+            pnlLanding.Visible = (name == "landing");
+            pnlChat.Visible = (name == "chat");
+            pnlTasks.Visible = (name == "tasks");
+            pnlQuiz.Visible = (name == "quiz");
+            pnlLog.Visible = (name == "log");
+
+            if (name == "log")
+            {
+                ShowActivityLog(); // 👈 We'll write this method below
+            }
+        }
+
+        private void ShowActivityLog()
+        {
+            if (activityLog.Count == 0)
+            {
+                logBox.Text = "No actions recorded yet.";
+            }
+            else
+            {
+                var recent = activityLog.Skip(Math.Max(0, activityLog.Count - 10)).ToList();
+                StringBuilder sb = new StringBuilder();
+                sb.AppendLine("Recent Activity:");
+                for (int i = 0; i < recent.Count; i++)
+                {
+                    sb.AppendLine($"{i + 1}. {recent[i]}");
+                }
+                logBox.Text = sb.ToString();
+            }
+        }
+
+
 
         private void btnAddTask_Click(object sender, EventArgs e)
         {
@@ -198,7 +282,7 @@ namespace CyberSecurityChatbotGUI
                 score = 0;
                 ShowNextQuizQuestion();
                 AppendToChat("Bot", "Starting cybersecurity quiz! First question on the way...");
-                grpQuiz.Visible = true;
+                ShowPanel("quiz");
             }
             else if (input.ToLower().StartsWith("remind me to"))
             {
@@ -422,6 +506,14 @@ namespace CyberSecurityChatbotGUI
                 }));
             });
         }
+
+
+        private void btnNavHome_Click(object sender, EventArgs e) => ShowPanel("landing");
+        private void btnNavChat_Click(object sender, EventArgs e) => ShowPanel("chat");
+        private void btnNavTasks_Click(object sender, EventArgs e) => ShowPanel("tasks");
+        private void btnNavQuiz_Click(object sender, EventArgs e) => ShowPanel("quiz");
+        private void btnNavLog_Click(object sender, EventArgs e) => ShowPanel("log");
+
 
     }
 }
