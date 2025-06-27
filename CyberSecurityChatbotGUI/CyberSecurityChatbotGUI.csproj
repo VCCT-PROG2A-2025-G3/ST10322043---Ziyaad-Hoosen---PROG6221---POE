@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Prompt.cs" />
     <Compile Include="QuizQuestion.cs" />
     <Compile Include="Services\ChatResponseSystem.cs" />
     <Compile Include="Services\ConsoleUIEnhancer.cs" />
@@ -89,7 +90,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="welcome_message.wav" />
+    <Content Include="welcome_message.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

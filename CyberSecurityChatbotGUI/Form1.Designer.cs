@@ -58,46 +58,48 @@
             this.btnGoToTasks = new System.Windows.Forms.Button();
             this.picLogo = new System.Windows.Forms.PictureBox();
             this.pnlChat = new System.Windows.Forms.Panel();
+            this.lblCyberSecCB = new System.Windows.Forms.Label();
+            this.pnlNavChat = new System.Windows.Forms.Panel();
+            this.btnNavLog_Chat = new System.Windows.Forms.Button();
+            this.btnNavQuiz_Chat = new System.Windows.Forms.Button();
+            this.btnNavTasks_Chat = new System.Windows.Forms.Button();
+            this.btnNavChat_Chat = new System.Windows.Forms.Button();
+            this.btnNavHome_Chat = new System.Windows.Forms.Button();
             this.pnlTasks = new System.Windows.Forms.Panel();
+            this.pnlNavTasks = new System.Windows.Forms.Panel();
+            this.btnNavLog = new System.Windows.Forms.Button();
+            this.btnNavQuiz = new System.Windows.Forms.Button();
+            this.btnNavTasks = new System.Windows.Forms.Button();
+            this.btnNavChat = new System.Windows.Forms.Button();
+            this.btnNavHome = new System.Windows.Forms.Button();
             this.pnlQuiz = new System.Windows.Forms.Panel();
+            this.pnlNavQuiz = new System.Windows.Forms.Panel();
+            this.btnNavLog_Quiz = new System.Windows.Forms.Button();
+            this.btnNavQuiz_Quiz = new System.Windows.Forms.Button();
+            this.btnNavTasks_Quiz = new System.Windows.Forms.Button();
+            this.btnNavChat_Quiz = new System.Windows.Forms.Button();
+            this.btnNavHome_Quiz = new System.Windows.Forms.Button();
             this.btnStartQuiz = new System.Windows.Forms.Button();
             this.pnlLog = new System.Windows.Forms.Panel();
-            this.logBox = new System.Windows.Forms.RichTextBox();
-            this.pnlNavTasks = new System.Windows.Forms.Panel();
-            this.btnNavHome = new System.Windows.Forms.Button();
-            this.btnNavChat = new System.Windows.Forms.Button();
-            this.btnNavTasks = new System.Windows.Forms.Button();
-            this.btnNavQuiz = new System.Windows.Forms.Button();
-            this.btnNavLog = new System.Windows.Forms.Button();
             this.pnlNavLog = new System.Windows.Forms.Panel();
-            this.btnNavHome_Log = new System.Windows.Forms.Button();
-            this.btnNavChat_Log = new System.Windows.Forms.Button();
-            this.btnNavTasks_Log = new System.Windows.Forms.Button();
-            this.btnNavQuiz_Log = new System.Windows.Forms.Button();
             this.btnNavLog_Log = new System.Windows.Forms.Button();
-            this.pnlNavQuiz = new System.Windows.Forms.Panel();
-            this.btnNavHome_Quiz = new System.Windows.Forms.Button();
-            this.btnNavChat_Quiz = new System.Windows.Forms.Button();
-            this.btnNavTasks_Quiz = new System.Windows.Forms.Button();
-            this.btnNavQuiz_Quiz = new System.Windows.Forms.Button();
-            this.btnNavLog_Quiz = new System.Windows.Forms.Button();
-            this.pnlNavChat = new System.Windows.Forms.Panel();
-            this.btnNavHome_Chat = new System.Windows.Forms.Button();
-            this.btnNavChat_Chat = new System.Windows.Forms.Button();
-            this.btnNavTasks_Chat = new System.Windows.Forms.Button();
-            this.btnNavQuiz_Chat = new System.Windows.Forms.Button();
-            this.btnNavLog_Chat = new System.Windows.Forms.Button();
+            this.btnNavQuiz_Log = new System.Windows.Forms.Button();
+            this.btnNavTasks_Log = new System.Windows.Forms.Button();
+            this.btnNavChat_Log = new System.Windows.Forms.Button();
+            this.btnNavHome_Log = new System.Windows.Forms.Button();
+            this.logBox = new System.Windows.Forms.RichTextBox();
+            this.lblAssist = new System.Windows.Forms.Label();
             this.grpQuiz.SuspendLayout();
             this.pnlLanding.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
             this.pnlChat.SuspendLayout();
-            this.pnlTasks.SuspendLayout();
-            this.pnlQuiz.SuspendLayout();
-            this.pnlLog.SuspendLayout();
-            this.pnlNavTasks.SuspendLayout();
-            this.pnlNavLog.SuspendLayout();
-            this.pnlNavQuiz.SuspendLayout();
             this.pnlNavChat.SuspendLayout();
+            this.pnlTasks.SuspendLayout();
+            this.pnlNavTasks.SuspendLayout();
+            this.pnlQuiz.SuspendLayout();
+            this.pnlNavQuiz.SuspendLayout();
+            this.pnlLog.SuspendLayout();
+            this.pnlNavLog.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -198,24 +200,25 @@
             // 
             // chatHistoryBox
             // 
-            this.chatHistoryBox.Location = new System.Drawing.Point(229, 385);
+            this.chatHistoryBox.Location = new System.Drawing.Point(28, 193);
             this.chatHistoryBox.Name = "chatHistoryBox";
             this.chatHistoryBox.ReadOnly = true;
             this.chatHistoryBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.chatHistoryBox.Size = new System.Drawing.Size(922, 175);
+            this.chatHistoryBox.Size = new System.Drawing.Size(1296, 280);
             this.chatHistoryBox.TabIndex = 10;
             this.chatHistoryBox.Text = "";
             // 
             // userInputBox
             // 
-            this.userInputBox.Location = new System.Drawing.Point(343, 287);
+            this.userInputBox.Location = new System.Drawing.Point(28, 545);
             this.userInputBox.Name = "userInputBox";
-            this.userInputBox.Size = new System.Drawing.Size(704, 26);
+            this.userInputBox.Size = new System.Drawing.Size(1296, 26);
             this.userInputBox.TabIndex = 11;
             this.userInputBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.userInputBox_KeyDown);
             // 
             // grpQuiz
             // 
+            this.grpQuiz.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.grpQuiz.Controls.Add(this.lblFeedback);
             this.grpQuiz.Controls.Add(this.btnSubmitAnswer);
             this.grpQuiz.Controls.Add(this.rdoOption4);
@@ -223,9 +226,9 @@
             this.grpQuiz.Controls.Add(this.rdoOption2);
             this.grpQuiz.Controls.Add(this.rdoOption1);
             this.grpQuiz.Controls.Add(this.lblQuestion);
-            this.grpQuiz.Location = new System.Drawing.Point(519, 194);
+            this.grpQuiz.Location = new System.Drawing.Point(297, 177);
             this.grpQuiz.Name = "grpQuiz";
-            this.grpQuiz.Size = new System.Drawing.Size(381, 421);
+            this.grpQuiz.Size = new System.Drawing.Size(650, 421);
             this.grpQuiz.TabIndex = 12;
             this.grpQuiz.TabStop = false;
             this.grpQuiz.Text = "Cybersecurity Quiz";
@@ -234,7 +237,7 @@
             // lblFeedback
             // 
             this.lblFeedback.AutoSize = true;
-            this.lblFeedback.Location = new System.Drawing.Point(95, 354);
+            this.lblFeedback.Location = new System.Drawing.Point(108, 363);
             this.lblFeedback.Name = "lblFeedback";
             this.lblFeedback.Size = new System.Drawing.Size(194, 20);
             this.lblFeedback.TabIndex = 7;
@@ -242,7 +245,7 @@
             // 
             // btnSubmitAnswer
             // 
-            this.btnSubmitAnswer.Location = new System.Drawing.Point(142, 300);
+            this.btnSubmitAnswer.Location = new System.Drawing.Point(22, 327);
             this.btnSubmitAnswer.Name = "btnSubmitAnswer";
             this.btnSubmitAnswer.Size = new System.Drawing.Size(106, 28);
             this.btnSubmitAnswer.TabIndex = 5;
@@ -365,6 +368,8 @@
             // 
             // pnlChat
             // 
+            this.pnlChat.Controls.Add(this.lblAssist);
+            this.pnlChat.Controls.Add(this.lblCyberSecCB);
             this.pnlChat.Controls.Add(this.pnlNavChat);
             this.pnlChat.Controls.Add(this.userInputBox);
             this.pnlChat.Controls.Add(this.chatHistoryBox);
@@ -373,6 +378,80 @@
             this.pnlChat.Name = "pnlChat";
             this.pnlChat.Size = new System.Drawing.Size(1367, 638);
             this.pnlChat.TabIndex = 5;
+            // 
+            // lblCyberSecCB
+            // 
+            this.lblCyberSecCB.AutoSize = true;
+            this.lblCyberSecCB.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.lblCyberSecCB.Location = new System.Drawing.Point(28, 151);
+            this.lblCyberSecCB.Name = "lblCyberSecCB";
+            this.lblCyberSecCB.Size = new System.Drawing.Size(293, 20);
+            this.lblCyberSecCB.TabIndex = 13;
+            this.lblCyberSecCB.Text = "Welcome to the CyberSecurity Chatbox! ";
+            // 
+            // pnlNavChat
+            // 
+            this.pnlNavChat.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.pnlNavChat.Controls.Add(this.btnNavLog_Chat);
+            this.pnlNavChat.Controls.Add(this.btnNavQuiz_Chat);
+            this.pnlNavChat.Controls.Add(this.btnNavTasks_Chat);
+            this.pnlNavChat.Controls.Add(this.btnNavChat_Chat);
+            this.pnlNavChat.Controls.Add(this.btnNavHome_Chat);
+            this.pnlNavChat.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlNavChat.Location = new System.Drawing.Point(0, 0);
+            this.pnlNavChat.Name = "pnlNavChat";
+            this.pnlNavChat.Size = new System.Drawing.Size(1367, 100);
+            this.pnlNavChat.TabIndex = 12;
+            // 
+            // btnNavLog_Chat
+            // 
+            this.btnNavLog_Chat.Location = new System.Drawing.Point(657, 31);
+            this.btnNavLog_Chat.Name = "btnNavLog_Chat";
+            this.btnNavLog_Chat.Size = new System.Drawing.Size(155, 42);
+            this.btnNavLog_Chat.TabIndex = 4;
+            this.btnNavLog_Chat.Text = "Log";
+            this.btnNavLog_Chat.UseVisualStyleBackColor = true;
+            this.btnNavLog_Chat.Click += new System.EventHandler(this.btnNavLog_Click);
+            // 
+            // btnNavQuiz_Chat
+            // 
+            this.btnNavQuiz_Chat.Location = new System.Drawing.Point(495, 31);
+            this.btnNavQuiz_Chat.Name = "btnNavQuiz_Chat";
+            this.btnNavQuiz_Chat.Size = new System.Drawing.Size(155, 42);
+            this.btnNavQuiz_Chat.TabIndex = 3;
+            this.btnNavQuiz_Chat.Text = "Quiz";
+            this.btnNavQuiz_Chat.UseVisualStyleBackColor = true;
+            this.btnNavQuiz_Chat.Click += new System.EventHandler(this.btnNavQuiz_Click);
+            // 
+            // btnNavTasks_Chat
+            // 
+            this.btnNavTasks_Chat.Location = new System.Drawing.Point(334, 31);
+            this.btnNavTasks_Chat.Name = "btnNavTasks_Chat";
+            this.btnNavTasks_Chat.Size = new System.Drawing.Size(155, 42);
+            this.btnNavTasks_Chat.TabIndex = 2;
+            this.btnNavTasks_Chat.Text = "Tasks";
+            this.btnNavTasks_Chat.UseVisualStyleBackColor = true;
+            this.btnNavTasks_Chat.Click += new System.EventHandler(this.btnNavTasks_Click);
+            // 
+            // btnNavChat_Chat
+            // 
+            this.btnNavChat_Chat.Location = new System.Drawing.Point(173, 31);
+            this.btnNavChat_Chat.Name = "btnNavChat_Chat";
+            this.btnNavChat_Chat.Size = new System.Drawing.Size(155, 42);
+            this.btnNavChat_Chat.TabIndex = 1;
+            this.btnNavChat_Chat.Text = "Chat";
+            this.btnNavChat_Chat.UseVisualStyleBackColor = true;
+            this.btnNavChat_Chat.Click += new System.EventHandler(this.btnNavChat_Click);
+            // 
+            // btnNavHome_Chat
+            // 
+            this.btnNavHome_Chat.Location = new System.Drawing.Point(12, 31);
+            this.btnNavHome_Chat.Name = "btnNavHome_Chat";
+            this.btnNavHome_Chat.Size = new System.Drawing.Size(155, 42);
+            this.btnNavHome_Chat.TabIndex = 0;
+            this.btnNavHome_Chat.Text = "Home";
+            this.btnNavHome_Chat.UseVisualStyleBackColor = true;
+            this.btnNavHome_Chat.Click += new System.EventHandler(this.btnNavHome_Click);
             // 
             // pnlTasks
             // 
@@ -393,6 +472,70 @@
             this.pnlTasks.Size = new System.Drawing.Size(1367, 638);
             this.pnlTasks.TabIndex = 12;
             // 
+            // pnlNavTasks
+            // 
+            this.pnlNavTasks.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.pnlNavTasks.Controls.Add(this.btnNavLog);
+            this.pnlNavTasks.Controls.Add(this.btnNavQuiz);
+            this.pnlNavTasks.Controls.Add(this.btnNavTasks);
+            this.pnlNavTasks.Controls.Add(this.btnNavChat);
+            this.pnlNavTasks.Controls.Add(this.btnNavHome);
+            this.pnlNavTasks.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlNavTasks.Location = new System.Drawing.Point(0, 0);
+            this.pnlNavTasks.Name = "pnlNavTasks";
+            this.pnlNavTasks.Size = new System.Drawing.Size(1367, 100);
+            this.pnlNavTasks.TabIndex = 1;
+            // 
+            // btnNavLog
+            // 
+            this.btnNavLog.Location = new System.Drawing.Point(665, 31);
+            this.btnNavLog.Name = "btnNavLog";
+            this.btnNavLog.Size = new System.Drawing.Size(155, 42);
+            this.btnNavLog.TabIndex = 4;
+            this.btnNavLog.Text = "Log";
+            this.btnNavLog.UseVisualStyleBackColor = true;
+            this.btnNavLog.Click += new System.EventHandler(this.btnNavLog_Click);
+            // 
+            // btnNavQuiz
+            // 
+            this.btnNavQuiz.Location = new System.Drawing.Point(504, 31);
+            this.btnNavQuiz.Name = "btnNavQuiz";
+            this.btnNavQuiz.Size = new System.Drawing.Size(155, 42);
+            this.btnNavQuiz.TabIndex = 3;
+            this.btnNavQuiz.Text = "Quiz";
+            this.btnNavQuiz.UseVisualStyleBackColor = true;
+            this.btnNavQuiz.Click += new System.EventHandler(this.btnNavQuiz_Click);
+            // 
+            // btnNavTasks
+            // 
+            this.btnNavTasks.Location = new System.Drawing.Point(343, 31);
+            this.btnNavTasks.Name = "btnNavTasks";
+            this.btnNavTasks.Size = new System.Drawing.Size(155, 42);
+            this.btnNavTasks.TabIndex = 2;
+            this.btnNavTasks.Text = "Tasks";
+            this.btnNavTasks.UseVisualStyleBackColor = true;
+            this.btnNavTasks.Click += new System.EventHandler(this.btnNavTasks_Click);
+            // 
+            // btnNavChat
+            // 
+            this.btnNavChat.Location = new System.Drawing.Point(182, 31);
+            this.btnNavChat.Name = "btnNavChat";
+            this.btnNavChat.Size = new System.Drawing.Size(155, 42);
+            this.btnNavChat.TabIndex = 1;
+            this.btnNavChat.Text = "Chat";
+            this.btnNavChat.UseVisualStyleBackColor = true;
+            this.btnNavChat.Click += new System.EventHandler(this.btnNavChat_Click);
+            // 
+            // btnNavHome
+            // 
+            this.btnNavHome.Location = new System.Drawing.Point(21, 31);
+            this.btnNavHome.Name = "btnNavHome";
+            this.btnNavHome.Size = new System.Drawing.Size(155, 42);
+            this.btnNavHome.TabIndex = 0;
+            this.btnNavHome.Text = "Home";
+            this.btnNavHome.UseVisualStyleBackColor = true;
+            this.btnNavHome.Click += new System.EventHandler(this.btnNavHome_Click);
+            // 
             // pnlQuiz
             // 
             this.pnlQuiz.Controls.Add(this.pnlNavQuiz);
@@ -404,9 +547,73 @@
             this.pnlQuiz.Size = new System.Drawing.Size(1367, 638);
             this.pnlQuiz.TabIndex = 10;
             // 
+            // pnlNavQuiz
+            // 
+            this.pnlNavQuiz.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.pnlNavQuiz.Controls.Add(this.btnNavLog_Quiz);
+            this.pnlNavQuiz.Controls.Add(this.btnNavQuiz_Quiz);
+            this.pnlNavQuiz.Controls.Add(this.btnNavTasks_Quiz);
+            this.pnlNavQuiz.Controls.Add(this.btnNavChat_Quiz);
+            this.pnlNavQuiz.Controls.Add(this.btnNavHome_Quiz);
+            this.pnlNavQuiz.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlNavQuiz.Location = new System.Drawing.Point(0, 0);
+            this.pnlNavQuiz.Name = "pnlNavQuiz";
+            this.pnlNavQuiz.Size = new System.Drawing.Size(1367, 100);
+            this.pnlNavQuiz.TabIndex = 13;
+            // 
+            // btnNavLog_Quiz
+            // 
+            this.btnNavLog_Quiz.Location = new System.Drawing.Point(656, 31);
+            this.btnNavLog_Quiz.Name = "btnNavLog_Quiz";
+            this.btnNavLog_Quiz.Size = new System.Drawing.Size(155, 42);
+            this.btnNavLog_Quiz.TabIndex = 4;
+            this.btnNavLog_Quiz.Text = "Log";
+            this.btnNavLog_Quiz.UseVisualStyleBackColor = true;
+            this.btnNavLog_Quiz.Click += new System.EventHandler(this.btnNavLog_Click);
+            // 
+            // btnNavQuiz_Quiz
+            // 
+            this.btnNavQuiz_Quiz.Location = new System.Drawing.Point(495, 31);
+            this.btnNavQuiz_Quiz.Name = "btnNavQuiz_Quiz";
+            this.btnNavQuiz_Quiz.Size = new System.Drawing.Size(155, 42);
+            this.btnNavQuiz_Quiz.TabIndex = 3;
+            this.btnNavQuiz_Quiz.Text = "Quiz";
+            this.btnNavQuiz_Quiz.UseVisualStyleBackColor = true;
+            this.btnNavQuiz_Quiz.Click += new System.EventHandler(this.btnNavQuiz_Click);
+            // 
+            // btnNavTasks_Quiz
+            // 
+            this.btnNavTasks_Quiz.Location = new System.Drawing.Point(334, 31);
+            this.btnNavTasks_Quiz.Name = "btnNavTasks_Quiz";
+            this.btnNavTasks_Quiz.Size = new System.Drawing.Size(155, 42);
+            this.btnNavTasks_Quiz.TabIndex = 2;
+            this.btnNavTasks_Quiz.Text = "Tasks";
+            this.btnNavTasks_Quiz.UseVisualStyleBackColor = true;
+            this.btnNavTasks_Quiz.Click += new System.EventHandler(this.btnNavTasks_Click);
+            // 
+            // btnNavChat_Quiz
+            // 
+            this.btnNavChat_Quiz.Location = new System.Drawing.Point(173, 31);
+            this.btnNavChat_Quiz.Name = "btnNavChat_Quiz";
+            this.btnNavChat_Quiz.Size = new System.Drawing.Size(155, 42);
+            this.btnNavChat_Quiz.TabIndex = 1;
+            this.btnNavChat_Quiz.Text = "Chat";
+            this.btnNavChat_Quiz.UseVisualStyleBackColor = true;
+            this.btnNavChat_Quiz.Click += new System.EventHandler(this.btnNavChat_Click);
+            // 
+            // btnNavHome_Quiz
+            // 
+            this.btnNavHome_Quiz.Location = new System.Drawing.Point(12, 31);
+            this.btnNavHome_Quiz.Name = "btnNavHome_Quiz";
+            this.btnNavHome_Quiz.Size = new System.Drawing.Size(155, 42);
+            this.btnNavHome_Quiz.TabIndex = 0;
+            this.btnNavHome_Quiz.Text = "Home";
+            this.btnNavHome_Quiz.UseVisualStyleBackColor = true;
+            this.btnNavHome_Quiz.Click += new System.EventHandler(this.btnNavHome_Click);
+            // 
             // btnStartQuiz
             // 
-            this.btnStartQuiz.Location = new System.Drawing.Point(657, 130);
+            this.btnStartQuiz.Location = new System.Drawing.Point(630, 124);
             this.btnStartQuiz.Name = "btnStartQuiz";
             this.btnStartQuiz.Size = new System.Drawing.Size(94, 41);
             this.btnStartQuiz.TabIndex = 1;
@@ -423,80 +630,6 @@
             this.pnlLog.Size = new System.Drawing.Size(1367, 638);
             this.pnlLog.TabIndex = 13;
             // 
-            // logBox
-            // 
-            this.logBox.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.logBox.Location = new System.Drawing.Point(302, 135);
-            this.logBox.Name = "logBox";
-            this.logBox.ReadOnly = true;
-            this.logBox.Size = new System.Drawing.Size(745, 436);
-            this.logBox.TabIndex = 0;
-            this.logBox.Text = "";
-            // 
-            // pnlNavTasks
-            // 
-            this.pnlNavTasks.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.pnlNavTasks.Controls.Add(this.btnNavLog);
-            this.pnlNavTasks.Controls.Add(this.btnNavQuiz);
-            this.pnlNavTasks.Controls.Add(this.btnNavTasks);
-            this.pnlNavTasks.Controls.Add(this.btnNavChat);
-            this.pnlNavTasks.Controls.Add(this.btnNavHome);
-            this.pnlNavTasks.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlNavTasks.Location = new System.Drawing.Point(0, 0);
-            this.pnlNavTasks.Name = "pnlNavTasks";
-            this.pnlNavTasks.Size = new System.Drawing.Size(1367, 100);
-            this.pnlNavTasks.TabIndex = 1;
-            // 
-            // btnNavHome
-            // 
-            this.btnNavHome.Location = new System.Drawing.Point(21, 31);
-            this.btnNavHome.Name = "btnNavHome";
-            this.btnNavHome.Size = new System.Drawing.Size(155, 42);
-            this.btnNavHome.TabIndex = 0;
-            this.btnNavHome.Text = "Home";
-            this.btnNavHome.UseVisualStyleBackColor = true;
-            this.btnNavHome.Click += new System.EventHandler(this.btnNavHome_Click);
-            // 
-            // btnNavChat
-            // 
-            this.btnNavChat.Location = new System.Drawing.Point(182, 31);
-            this.btnNavChat.Name = "btnNavChat";
-            this.btnNavChat.Size = new System.Drawing.Size(155, 42);
-            this.btnNavChat.TabIndex = 1;
-            this.btnNavChat.Text = "Chat";
-            this.btnNavChat.UseVisualStyleBackColor = true;
-            this.btnNavChat.Click += new System.EventHandler(this.btnNavChat_Click);
-            // 
-            // btnNavTasks
-            // 
-            this.btnNavTasks.Location = new System.Drawing.Point(343, 31);
-            this.btnNavTasks.Name = "btnNavTasks";
-            this.btnNavTasks.Size = new System.Drawing.Size(155, 42);
-            this.btnNavTasks.TabIndex = 2;
-            this.btnNavTasks.Text = "Tasks";
-            this.btnNavTasks.UseVisualStyleBackColor = true;
-            this.btnNavTasks.Click += new System.EventHandler(this.btnNavTasks_Click);
-            // 
-            // btnNavQuiz
-            // 
-            this.btnNavQuiz.Location = new System.Drawing.Point(504, 31);
-            this.btnNavQuiz.Name = "btnNavQuiz";
-            this.btnNavQuiz.Size = new System.Drawing.Size(155, 42);
-            this.btnNavQuiz.TabIndex = 3;
-            this.btnNavQuiz.Text = "Quiz";
-            this.btnNavQuiz.UseVisualStyleBackColor = true;
-            this.btnNavQuiz.Click += new System.EventHandler(this.btnNavQuiz_Click);
-            // 
-            // btnNavLog
-            // 
-            this.btnNavLog.Location = new System.Drawing.Point(665, 31);
-            this.btnNavLog.Name = "btnNavLog";
-            this.btnNavLog.Size = new System.Drawing.Size(155, 42);
-            this.btnNavLog.TabIndex = 4;
-            this.btnNavLog.Text = "Log";
-            this.btnNavLog.UseVisualStyleBackColor = true;
-            this.btnNavLog.Click += new System.EventHandler(this.btnNavLog_Click);
-            // 
             // pnlNavLog
             // 
             this.pnlNavLog.BackColor = System.Drawing.SystemColors.InactiveCaption;
@@ -511,35 +644,15 @@
             this.pnlNavLog.Size = new System.Drawing.Size(1367, 100);
             this.pnlNavLog.TabIndex = 1;
             // 
-            // btnNavHome_Log
+            // btnNavLog_Log
             // 
-            this.btnNavHome_Log.Location = new System.Drawing.Point(12, 31);
-            this.btnNavHome_Log.Name = "btnNavHome_Log";
-            this.btnNavHome_Log.Size = new System.Drawing.Size(155, 42);
-            this.btnNavHome_Log.TabIndex = 0;
-            this.btnNavHome_Log.Text = "Home";
-            this.btnNavHome_Log.UseVisualStyleBackColor = true;
-            this.btnNavHome_Log.Click += new System.EventHandler(this.btnNavHome_Click);
-            // 
-            // btnNavChat_Log
-            // 
-            this.btnNavChat_Log.Location = new System.Drawing.Point(173, 31);
-            this.btnNavChat_Log.Name = "btnNavChat_Log";
-            this.btnNavChat_Log.Size = new System.Drawing.Size(155, 42);
-            this.btnNavChat_Log.TabIndex = 1;
-            this.btnNavChat_Log.Text = "Chat";
-            this.btnNavChat_Log.UseVisualStyleBackColor = true;
-            this.btnNavChat_Log.Click += new System.EventHandler(this.btnNavChat_Click);
-            // 
-            // btnNavTasks_Log
-            // 
-            this.btnNavTasks_Log.Location = new System.Drawing.Point(334, 31);
-            this.btnNavTasks_Log.Name = "btnNavTasks_Log";
-            this.btnNavTasks_Log.Size = new System.Drawing.Size(155, 42);
-            this.btnNavTasks_Log.TabIndex = 2;
-            this.btnNavTasks_Log.Text = "Tasks";
-            this.btnNavTasks_Log.UseVisualStyleBackColor = true;
-            this.btnNavTasks_Log.Click += new System.EventHandler(this.btnNavTasks_Click);
+            this.btnNavLog_Log.Location = new System.Drawing.Point(656, 31);
+            this.btnNavLog_Log.Name = "btnNavLog_Log";
+            this.btnNavLog_Log.Size = new System.Drawing.Size(155, 42);
+            this.btnNavLog_Log.TabIndex = 4;
+            this.btnNavLog_Log.Text = "Log";
+            this.btnNavLog_Log.UseVisualStyleBackColor = true;
+            this.btnNavLog_Log.Click += new System.EventHandler(this.btnNavLog_Click);
             // 
             // btnNavQuiz_Log
             // 
@@ -551,154 +664,66 @@
             this.btnNavQuiz_Log.UseVisualStyleBackColor = true;
             this.btnNavQuiz_Log.Click += new System.EventHandler(this.btnNavQuiz_Click);
             // 
-            // btnNavLog_Log
+            // btnNavTasks_Log
             // 
-            this.btnNavLog_Log.Location = new System.Drawing.Point(656, 31);
-            this.btnNavLog_Log.Name = "btnNavLog_Log";
-            this.btnNavLog_Log.Size = new System.Drawing.Size(155, 42);
-            this.btnNavLog_Log.TabIndex = 4;
-            this.btnNavLog_Log.Text = "Log";
-            this.btnNavLog_Log.UseVisualStyleBackColor = true;
-            this.btnNavLog_Log.Click += new System.EventHandler(this.btnNavLog_Click);
+            this.btnNavTasks_Log.Location = new System.Drawing.Point(334, 31);
+            this.btnNavTasks_Log.Name = "btnNavTasks_Log";
+            this.btnNavTasks_Log.Size = new System.Drawing.Size(155, 42);
+            this.btnNavTasks_Log.TabIndex = 2;
+            this.btnNavTasks_Log.Text = "Tasks";
+            this.btnNavTasks_Log.UseVisualStyleBackColor = true;
+            this.btnNavTasks_Log.Click += new System.EventHandler(this.btnNavTasks_Click);
             // 
-            // pnlNavQuiz
+            // btnNavChat_Log
             // 
-            this.pnlNavQuiz.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.pnlNavQuiz.Controls.Add(this.btnNavLog_Quiz);
-            this.pnlNavQuiz.Controls.Add(this.btnNavQuiz_Quiz);
-            this.pnlNavQuiz.Controls.Add(this.btnNavTasks_Quiz);
-            this.pnlNavQuiz.Controls.Add(this.btnNavChat_Quiz);
-            this.pnlNavQuiz.Controls.Add(this.btnNavHome_Quiz);
-            this.pnlNavQuiz.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlNavQuiz.Location = new System.Drawing.Point(0, 0);
-            this.pnlNavQuiz.Name = "pnlNavQuiz";
-            this.pnlNavQuiz.Size = new System.Drawing.Size(1367, 100);
-            this.pnlNavQuiz.TabIndex = 13;
+            this.btnNavChat_Log.Location = new System.Drawing.Point(173, 31);
+            this.btnNavChat_Log.Name = "btnNavChat_Log";
+            this.btnNavChat_Log.Size = new System.Drawing.Size(155, 42);
+            this.btnNavChat_Log.TabIndex = 1;
+            this.btnNavChat_Log.Text = "Chat";
+            this.btnNavChat_Log.UseVisualStyleBackColor = true;
+            this.btnNavChat_Log.Click += new System.EventHandler(this.btnNavChat_Click);
             // 
-            // btnNavHome_Quiz
+            // btnNavHome_Log
             // 
-            this.btnNavHome_Quiz.Location = new System.Drawing.Point(12, 31);
-            this.btnNavHome_Quiz.Name = "btnNavHome_Quiz";
-            this.btnNavHome_Quiz.Size = new System.Drawing.Size(155, 42);
-            this.btnNavHome_Quiz.TabIndex = 0;
-            this.btnNavHome_Quiz.Text = "Home";
-            this.btnNavHome_Quiz.UseVisualStyleBackColor = true;
-            this.btnNavHome_Quiz.Click += new System.EventHandler(this.btnNavHome_Click);
+            this.btnNavHome_Log.Location = new System.Drawing.Point(12, 31);
+            this.btnNavHome_Log.Name = "btnNavHome_Log";
+            this.btnNavHome_Log.Size = new System.Drawing.Size(155, 42);
+            this.btnNavHome_Log.TabIndex = 0;
+            this.btnNavHome_Log.Text = "Home";
+            this.btnNavHome_Log.UseVisualStyleBackColor = true;
+            this.btnNavHome_Log.Click += new System.EventHandler(this.btnNavHome_Click);
             // 
-            // btnNavChat_Quiz
+            // logBox
             // 
-            this.btnNavChat_Quiz.Location = new System.Drawing.Point(173, 31);
-            this.btnNavChat_Quiz.Name = "btnNavChat_Quiz";
-            this.btnNavChat_Quiz.Size = new System.Drawing.Size(155, 42);
-            this.btnNavChat_Quiz.TabIndex = 1;
-            this.btnNavChat_Quiz.Text = "Chat";
-            this.btnNavChat_Quiz.UseVisualStyleBackColor = true;
-            this.btnNavChat_Quiz.Click += new System.EventHandler(this.btnNavQuiz_Click);
+            this.logBox.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.logBox.Location = new System.Drawing.Point(194, 124);
+            this.logBox.Name = "logBox";
+            this.logBox.ReadOnly = true;
+            this.logBox.Size = new System.Drawing.Size(745, 436);
+            this.logBox.TabIndex = 0;
+            this.logBox.Text = "";
             // 
-            // btnNavTasks_Quiz
+            // lblAssist
             // 
-            this.btnNavTasks_Quiz.Location = new System.Drawing.Point(334, 31);
-            this.btnNavTasks_Quiz.Name = "btnNavTasks_Quiz";
-            this.btnNavTasks_Quiz.Size = new System.Drawing.Size(155, 42);
-            this.btnNavTasks_Quiz.TabIndex = 2;
-            this.btnNavTasks_Quiz.Text = "Tasks";
-            this.btnNavTasks_Quiz.UseVisualStyleBackColor = true;
-            this.btnNavTasks_Quiz.Click += new System.EventHandler(this.btnNavTasks_Click);
-            // 
-            // btnNavQuiz_Quiz
-            // 
-            this.btnNavQuiz_Quiz.Location = new System.Drawing.Point(495, 31);
-            this.btnNavQuiz_Quiz.Name = "btnNavQuiz_Quiz";
-            this.btnNavQuiz_Quiz.Size = new System.Drawing.Size(155, 42);
-            this.btnNavQuiz_Quiz.TabIndex = 3;
-            this.btnNavQuiz_Quiz.Text = "Quiz";
-            this.btnNavQuiz_Quiz.UseVisualStyleBackColor = true;
-            this.btnNavQuiz_Quiz.Click += new System.EventHandler(this.btnNavQuiz_Click);
-            // 
-            // btnNavLog_Quiz
-            // 
-            this.btnNavLog_Quiz.Location = new System.Drawing.Point(656, 31);
-            this.btnNavLog_Quiz.Name = "btnNavLog_Quiz";
-            this.btnNavLog_Quiz.Size = new System.Drawing.Size(155, 42);
-            this.btnNavLog_Quiz.TabIndex = 4;
-            this.btnNavLog_Quiz.Text = "Log";
-            this.btnNavLog_Quiz.UseVisualStyleBackColor = true;
-            this.btnNavLog_Quiz.Click += new System.EventHandler(this.btnNavLog_Click);
-            // 
-            // pnlNavChat
-            // 
-            this.pnlNavChat.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.pnlNavChat.Controls.Add(this.btnNavLog_Chat);
-            this.pnlNavChat.Controls.Add(this.btnNavQuiz_Chat);
-            this.pnlNavChat.Controls.Add(this.btnNavTasks_Chat);
-            this.pnlNavChat.Controls.Add(this.btnNavChat_Chat);
-            this.pnlNavChat.Controls.Add(this.btnNavHome_Chat);
-            this.pnlNavChat.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlNavChat.Location = new System.Drawing.Point(0, 0);
-            this.pnlNavChat.Name = "pnlNavChat";
-            this.pnlNavChat.Size = new System.Drawing.Size(1367, 100);
-            this.pnlNavChat.TabIndex = 12;
-            // 
-            // btnNavHome_Chat
-            // 
-            this.btnNavHome_Chat.Location = new System.Drawing.Point(12, 31);
-            this.btnNavHome_Chat.Name = "btnNavHome_Chat";
-            this.btnNavHome_Chat.Size = new System.Drawing.Size(155, 42);
-            this.btnNavHome_Chat.TabIndex = 0;
-            this.btnNavHome_Chat.Text = "Home";
-            this.btnNavHome_Chat.UseVisualStyleBackColor = true;
-            this.btnNavHome_Chat.Click += new System.EventHandler(this.btnNavHome_Click);
-            // 
-            // btnNavChat_Chat
-            // 
-            this.btnNavChat_Chat.Location = new System.Drawing.Point(173, 31);
-            this.btnNavChat_Chat.Name = "btnNavChat_Chat";
-            this.btnNavChat_Chat.Size = new System.Drawing.Size(155, 42);
-            this.btnNavChat_Chat.TabIndex = 1;
-            this.btnNavChat_Chat.Text = "Chat";
-            this.btnNavChat_Chat.UseVisualStyleBackColor = true;
-            this.btnNavChat_Chat.Click += new System.EventHandler(this.btnNavChat_Click);
-            // 
-            // btnNavTasks_Chat
-            // 
-            this.btnNavTasks_Chat.Location = new System.Drawing.Point(334, 31);
-            this.btnNavTasks_Chat.Name = "btnNavTasks_Chat";
-            this.btnNavTasks_Chat.Size = new System.Drawing.Size(155, 42);
-            this.btnNavTasks_Chat.TabIndex = 2;
-            this.btnNavTasks_Chat.Text = "Tasks";
-            this.btnNavTasks_Chat.UseVisualStyleBackColor = true;
-            this.btnNavTasks_Chat.Click += new System.EventHandler(this.btnNavTasks_Click);
-            // 
-            // btnNavQuiz_Chat
-            // 
-            this.btnNavQuiz_Chat.Location = new System.Drawing.Point(495, 31);
-            this.btnNavQuiz_Chat.Name = "btnNavQuiz_Chat";
-            this.btnNavQuiz_Chat.Size = new System.Drawing.Size(155, 42);
-            this.btnNavQuiz_Chat.TabIndex = 3;
-            this.btnNavQuiz_Chat.Text = "Quiz";
-            this.btnNavQuiz_Chat.UseVisualStyleBackColor = true;
-            this.btnNavQuiz_Chat.Click += new System.EventHandler(this.btnNavQuiz_Click);
-            // 
-            // btnNavLog_Chat
-            // 
-            this.btnNavLog_Chat.Location = new System.Drawing.Point(657, 31);
-            this.btnNavLog_Chat.Name = "btnNavLog_Chat";
-            this.btnNavLog_Chat.Size = new System.Drawing.Size(155, 42);
-            this.btnNavLog_Chat.TabIndex = 4;
-            this.btnNavLog_Chat.Text = "Log";
-            this.btnNavLog_Chat.UseVisualStyleBackColor = true;
-            this.btnNavLog_Chat.Click += new System.EventHandler(this.btnNavLog_Click);
+            this.lblAssist.AutoSize = true;
+            this.lblAssist.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.lblAssist.Location = new System.Drawing.Point(28, 494);
+            this.lblAssist.Name = "lblAssist";
+            this.lblAssist.Size = new System.Drawing.Size(207, 20);
+            this.lblAssist.TabIndex = 14;
+            this.lblAssist.Text = "How may i assist you today?";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1367, 638);
-            this.Controls.Add(this.pnlTasks);
-            this.Controls.Add(this.pnlLog);
-            this.Controls.Add(this.pnlChat);
             this.Controls.Add(this.pnlQuiz);
+            this.Controls.Add(this.pnlChat);
+            this.Controls.Add(this.pnlLog);
             this.Controls.Add(this.pnlLanding);
+            this.Controls.Add(this.pnlTasks);
             this.Name = "Form1";
             this.Text = "Form1";
             this.grpQuiz.ResumeLayout(false);
@@ -707,14 +732,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
             this.pnlChat.ResumeLayout(false);
             this.pnlChat.PerformLayout();
+            this.pnlNavChat.ResumeLayout(false);
             this.pnlTasks.ResumeLayout(false);
             this.pnlTasks.PerformLayout();
-            this.pnlQuiz.ResumeLayout(false);
-            this.pnlLog.ResumeLayout(false);
             this.pnlNavTasks.ResumeLayout(false);
-            this.pnlNavLog.ResumeLayout(false);
+            this.pnlQuiz.ResumeLayout(false);
             this.pnlNavQuiz.ResumeLayout(false);
-            this.pnlNavChat.ResumeLayout(false);
+            this.pnlLog.ResumeLayout(false);
+            this.pnlNavLog.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -778,6 +803,8 @@
         private System.Windows.Forms.Button btnNavTasks_Chat;
         private System.Windows.Forms.Button btnNavChat_Chat;
         private System.Windows.Forms.Button btnNavHome_Chat;
+        private System.Windows.Forms.Label lblCyberSecCB;
+        private System.Windows.Forms.Label lblAssist;
     }
 }
 

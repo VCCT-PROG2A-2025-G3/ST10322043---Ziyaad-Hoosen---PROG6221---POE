@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -19,6 +20,23 @@ namespace CyberSecurityChatbotGUI
         private int currentQuizIndex = 0;
         private int score = 0;
         List<TaskItem> tasks = new List<TaskItem>();
+
+        // Part 1/2 chatbot logic fields
+        private string userName = "";
+        private string favoriteTopic = "";
+        private string lastTopic = "";
+        private bool isFollowUp = false;
+        private bool suppressNextPrompt = false;
+        private HashSet<string> shownReminders = new HashSet<string>();
+        private string lastTipShown = "";
+
+        // Guided task creation fields
+        private enum TaskCreationStep { None, Title, Description, Reminder }
+        private TaskCreationStep awaitingTaskStep = TaskCreationStep.None;
+        private string tempTaskTitle = "";
+        private string tempTaskDescription = "";
+
+
 
 
 
@@ -58,7 +76,9 @@ namespace CyberSecurityChatbotGUI
                 pnlChat.Visible = true;
                 pnlTasks.Visible = false;
                 pnlQuiz.Visible = false;
+                PlayWelcomeSound(); 
             };
+
 
             btnGoToLog.Click += (s, e) => ShowPanel("log");
 
@@ -87,6 +107,13 @@ namespace CyberSecurityChatbotGUI
             {
                 ShowActivityLog(); // 👈 We'll write this method below
             }
+
+            if (name == "chat" && string.IsNullOrEmpty(userName) && !chatHistoryBox.Text.Contains("Hi! What's your name?"))
+            {
+                AppendToChat("Bot", "Hi! What's your name?");
+            }
+
+
         }
 
         private void ShowActivityLog()
@@ -135,7 +162,7 @@ namespace CyberSecurityChatbotGUI
             txtTitle.Clear();
             txtDescription.Clear();
 
-            }
+        }
         private void RefreshTaskList()
         {
             taskListBox.Items.Clear();
@@ -165,7 +192,6 @@ namespace CyberSecurityChatbotGUI
 
         }
 
-        private HashSet<string> shownReminders = new HashSet<string>();
 
         private void reminderTimer_Tick(object sender, EventArgs e)
         {
@@ -193,24 +219,104 @@ namespace CyberSecurityChatbotGUI
         {
             if (e.KeyCode == Keys.Enter)
             {
-                e.SuppressKeyPress = true; // Prevent ding sound
+                e.SuppressKeyPress = true;
                 string userInput = userInputBox.Text.Trim();
                 userInputBox.Clear();
 
-                if (!string.IsNullOrEmpty(userInput))
+                if (string.IsNullOrWhiteSpace(userInput))
                 {
-                    AppendToChat("User", userInput);
-                    HandleBotResponse(userInput);
+                    AppendToChat("Bot", "Please enter a message so I can help you.");
+                    return;
                 }
+
+                AppendToChat("User", userInput);
+
+                // 👤 Greeting logic
+                if (string.IsNullOrEmpty(userName))
+                {
+                    userName = userInput;
+                    AppendToChat("Bot", $"Nice to meet you, {userName}! Ask me anything about cybersecurity.");
+                    return;
+                }
+
+                // 🧠 Handle guided task creation
+                if (awaitingTaskStep == TaskCreationStep.Title)
+                {
+                    tempTaskTitle = userInput;
+                    awaitingTaskStep = TaskCreationStep.Description;
+                    AppendToChat("Bot", "Got it. And the description?");
+                    return;
+                }
+                else if (awaitingTaskStep == TaskCreationStep.Description)
+                {
+                    tempTaskDescription = userInput;
+                    awaitingTaskStep = TaskCreationStep.Reminder;
+                    AppendToChat("Bot", "When should I remind you? (e.g., 'in 2 hours', 'tomorrow morning')");
+                    return;
+                }
+                else if (awaitingTaskStep == TaskCreationStep.Reminder)
+                {
+                    DateTime reminder;
+                    if (!TryParseCasualReminder(userInput, out reminder))
+                    {
+                        reminder = DateTime.Now.AddMinutes(1);
+                        AppendToChat("Bot", "I couldn’t understand the time — I’ll set the reminder for 1 minute from now.");
+                    }
+                    else
+                    {
+                        AppendToChat("Bot", $"Reminder set for {reminder}");
+                    }
+
+                    TaskItem task = new TaskItem
+                    {
+                        Title = tempTaskTitle,
+                        Description = tempTaskDescription,
+                        Reminder = reminder
+                    };
+
+                    tasks.Add(task);
+                    activityLog.Add($"Task added via chat: {tempTaskTitle} ({reminder})");
+                    RefreshTaskList();
+                    AppendToChat("Bot", $"Your task '{tempTaskTitle}' has been added and I’ll remind you!");
+
+                    awaitingTaskStep = TaskCreationStep.None;
+                    return;
+                }
+
+
+                // Continue to response handler
+                HandleBotResponse(userInput);
             }
         }
+
+
         private void AppendToChat(string sender, string message)
         {
             chatHistoryBox.AppendText($"{sender}: {message}\n");
         }
 
+        private void PlayWelcomeSound()
+        {
+            try
+            {
+                SoundPlayer player = new SoundPlayer(Application.StartupPath + @"\welcome_message.wav");
+                player.Play();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Sound error: " + ex.Message);
+            }
+        }
+
         private void HandleBotResponse(string input)
         {
+            if (input.ToLower().Contains("i want to add a task") || input.ToLower().Contains("create a task") || input.ToLower().Contains("make a task"))
+            {
+                awaitingTaskStep = TaskCreationStep.Title;
+                AppendToChat("Bot", "Sure! What’s the title of your task?");
+                return;
+            }
+
             if (input.ToLower().Contains("hello"))
             {
                 AppendToChat("Bot", "Hi there! How can I help you with cybersecurity today?");
@@ -245,11 +351,94 @@ namespace CyberSecurityChatbotGUI
                         confirmation += $" with reminder set for {reminder.Value}.";
 
                     AppendToChat("Bot", confirmation);
+                    activityLog.Add($"Task added via chatbot: {title} (Reminder: {reminder})");
+
                 }
+
+
                 catch
                 {
                     AppendToChat("Bot", "Sorry, I couldn't understand that format. Use: Add task: Title | Description | DateTime");
                 }
+                return; // ✅ <- Add this
+            }
+
+            // Handle emotional responses
+            if (input.Contains("how are you"))
+            {
+                AppendToChat("Bot", $"I'm great, thanks for asking {userName}! Ready to help you stay safe online.");
+                return;
+            }
+            else if (input.Contains("worried"))
+            {
+                AppendToChat("Bot", "It's okay to be worried. Cybersecurity can be scary, but I'm here to guide you.");
+                return;
+            }
+            else if (input.Contains("frustrated"))
+            {
+                AppendToChat("Bot", "I'm sorry you're feeling frustrated. You're doing your best — keep going!");
+                return;
+            }
+            else if (input.Contains("curious"))
+            {
+                AppendToChat("Bot", "I love that you're curious! Ask me anything about cybersecurity.");
+                return;
+            }
+
+            // Handle favorite topic declaration
+            string[] favoritePatterns = {
+    "i'm interested in", "im interested in",
+    "i care about", "i like learning about",
+    "i want to know about", "i want to learn about"
+};
+            foreach (var pattern in favoritePatterns)
+            {
+                if (input.StartsWith(pattern))
+                {
+                    string newFavorite = input.Substring(pattern.Length).Trim();
+                    if (!string.IsNullOrEmpty(newFavorite))
+                    {
+                        favoriteTopic = newFavorite;
+                        shownReminders.Clear();
+                        AppendToChat("Bot", $"Great! I'll remember that you're interested in {favoriteTopic}. It’s important to stay informed.");
+                        activityLog.Add($"User favorited topic: {favoriteTopic}");
+
+                    }
+                    return;
+                }
+            }
+
+            // Handle topic tips
+            string lower = input.ToLower();
+            if (lower.Contains("phishing"))
+            {
+                lastTopic = "phishing";
+                ShowTip("phishing");
+                return;
+            }
+            else if (lower.Contains("password"))
+            {
+                lastTopic = "password";
+                ShowTip("password");
+                return;
+            }
+            else if (lower.Contains("safe browsing"))
+            {
+                lastTopic = "safe browsing";
+                ShowTip("safe browsing");
+                return;
+            }
+            else if (lower.Contains("scam"))
+            {
+                lastTopic = "scam";
+                ShowTip("scam");
+                return;
+            }
+            else if (lower.Contains("privacy"))
+            {
+                lastTopic = "privacy";
+                ShowTip("privacy");
+                return;
             }
 
             else if (input.ToLower().Contains("show tasks") || input.ToLower().Contains("list tasks") || input.ToLower().Contains("what tasks"))
@@ -258,7 +447,7 @@ namespace CyberSecurityChatbotGUI
                 {
                     AppendToChat("Bot", "You have no tasks at the moment.");
                 }
-                
+
                 else
                 {
                     StringBuilder taskList = new StringBuilder();
@@ -315,22 +504,41 @@ namespace CyberSecurityChatbotGUI
                 }
             }
 
-            else if (input.ToLower().StartsWith("delete task:"))
+            else if (input.ToLower().Contains("delete task"))
             {
-                string taskTitle = input.Substring("delete task:".Length).Trim().ToLower();
-                var taskToRemove = tasks.FirstOrDefault(t => t.Title.ToLower() == taskTitle);
-
-                if (taskToRemove != null)
+                string title = input.Replace("delete task", "").Trim().ToLower();
+                var match = tasks.FirstOrDefault(t => t.Title.ToLower().Contains(title));
+                if (match != null)
                 {
-                    tasks.Remove(taskToRemove);
+                    tasks.Remove(match);
                     RefreshTaskList();
-                    AppendToChat("Bot", $"Task '{taskToRemove.Title}' has been deleted.");
+                    AppendToChat("Bot", $"Deleted task: '{match.Title}'.");
+                    activityLog.Add($"Task deleted via chatbot: {match.Title}");
+
                 }
                 else
                 {
-                    AppendToChat("Bot", $"I couldn’t find a task called '{taskTitle}'.");
+                    AppendToChat("Bot", $"Couldn’t find a task matching '{title}'.");
                 }
             }
+            else if (input.ToLower().Contains("mark task") && input.ToLower().Contains("as done"))
+            {
+                string title = input.Replace("mark task", "").Replace("as done", "").Trim().ToLower();
+                var match = tasks.FirstOrDefault(t => t.Title.ToLower().Contains(title));
+                if (match != null)
+                {
+                    match.IsCompleted = true;
+                    RefreshTaskList();
+                    AppendToChat("Bot", $"Marked task '{match.Title}' as completed. ✅");
+                    activityLog.Add($"Task marked as complete via chatbot: {match.Title}");
+
+                }
+                else
+                {
+                    AppendToChat("Bot", $"Couldn’t find a task to mark as done for '{title}'.");
+                }
+            }
+
 
             else if (input.ToLower().Contains("show activity log") || input.ToLower().Contains("what have you done"))
             {
@@ -373,10 +581,6 @@ namespace CyberSecurityChatbotGUI
             {
                 AppendToChat("Bot", "Sorry, I didn’t understand that.");
             }
-
-            
-
-
 
         }
 
@@ -428,6 +632,81 @@ namespace CyberSecurityChatbotGUI
         }, 3)
     };
         }
+
+        private Dictionary<string, List<string>> topicTips = new Dictionary<string, List<string>>
+        {
+            ["phishing"] = new List<string>
+    {
+        "Be cautious of emails asking for personal information...",
+        "Avoid clicking suspicious links or downloading attachments from unknown sources.",
+        "Check the sender's email address closely – attackers often use slight misspellings.",
+        "Never enter sensitive information on websites you accessed through suspicious emails.",
+        "Use spam filters and keep your antivirus software updated."
+    },
+            ["password"] = new List<string>
+    {
+        "Use strong, unique passwords for each account.",
+        "Avoid using personal details like birthdays or names in your passwords.",
+        "Use a password manager to keep track of complex passwords.",
+        "Change your passwords regularly to enhance security.",
+        "Enable two-factor authentication whenever possible."
+    },
+            ["scam"] = new List<string>
+    {
+        "Always verify emails or messages that request money or personal information.",
+        "Be skeptical of deals that seem too good to be true.",
+        "Don’t trust caller ID, scammers can fake phone numbers.",
+        "Avoid sending money to strangers online.",
+        "Report suspicious activity to your local cybercrime authority."
+    },
+            ["privacy"] = new List<string>
+    {
+        "Limit what personal details you share on public social platforms.",
+        "Regularly review and update app and browser permissions.",
+        "Use secure, encrypted messaging apps for private conversations.",
+        "Avoid using public Wi-Fi without a VPN.",
+        "Disable location tracking when not needed."
+    },
+            ["safe browsing"] = new List<string>
+    {
+        "Avoid clicking on pop-ups or unknown ads while browsing.",
+        "Always check if a website uses HTTPS before entering personal info.",
+        "Keep your browser and extensions up to date to patch security flaws.",
+        "Don’t download files from untrusted or suspicious websites.",
+        "Use an ad blocker and antivirus software for safer browsing."
+    }
+        };
+
+        private void ShowTip(string topic)
+        {
+            if (topicTips.ContainsKey(topic))
+            {
+                Random rand = new Random();
+                var tips = topicTips[topic];
+
+                string selectedTip;
+                do
+                {
+                    selectedTip = tips[rand.Next(tips.Count)];
+                } while (tips.Count > 1 && selectedTip == lastTipShown);
+
+                lastTipShown = selectedTip;
+                AppendToChat("Bot", selectedTip);
+                activityLog.Add($"Tip shown for topic: {topic}");
+
+
+                if (!string.IsNullOrEmpty(favoriteTopic) && topic != favoriteTopic)
+                {
+                    string reminderKey = $"{topic}|{favoriteTopic}";
+                    if (!shownReminders.Contains(reminderKey))
+                    {
+                        AppendToChat("Bot", $"As someone interested in {favoriteTopic}, you might want to explore more about it in your daily online habits.");
+                        shownReminders.Add(reminderKey);
+                    }
+                }
+            }
+        }
+
 
 
         private void ShowNextQuizQuestion()
@@ -514,6 +793,48 @@ namespace CyberSecurityChatbotGUI
         private void btnNavQuiz_Click(object sender, EventArgs e) => ShowPanel("quiz");
         private void btnNavLog_Click(object sender, EventArgs e) => ShowPanel("log");
 
+        private bool TryParseCasualReminder(string input, out DateTime result)
+        {
+            input = input.ToLower();
+            result = DateTime.Now;
+
+            try
+            {
+                if (input.StartsWith("in "))
+                {
+                    string time = input.Substring(3).Trim();
+                    if (time.EndsWith("minutes"))
+                        result = result.AddMinutes(Convert.ToInt32(time.Replace("minutes", "").Trim()));
+                    else if (time.EndsWith("hours"))
+                        result = result.AddHours(Convert.ToInt32(time.Replace("hours", "").Trim()));
+                    else
+                        return false;
+                }
+                else if (input.Contains("tomorrow morning"))
+                {
+                    result = result.Date.AddDays(1).AddHours(8);
+                }
+                else if (input.Contains("tomorrow afternoon"))
+                {
+                    result = result.Date.AddDays(1).AddHours(14);
+                }
+                else if (input.Contains("today afternoon"))
+                {
+                    result = result.Date.AddHours(14);
+                }
+                else
+                {
+                    result = DateTime.Parse(input);
+                }
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
 
     }
+
 }

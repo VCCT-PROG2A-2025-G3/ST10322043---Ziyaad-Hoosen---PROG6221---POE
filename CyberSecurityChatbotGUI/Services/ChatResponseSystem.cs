@@ -102,7 +102,7 @@ namespace CyberSecurityChatBot.Services
                 }
                 else
                 {
-                   // ConsoleUIEnhancer.TypingEffect($"Would you like help with another topic, {userName}?");
+                    // ConsoleUIEnhancer.TypingEffect($"Would you like help with another topic, {userName}?");
                 }
 
                 // Prompt for user input
@@ -162,7 +162,7 @@ namespace CyberSecurityChatBot.Services
             // Friendly/general response
             if (input.Contains("how are you") || input.Contains("how are you doing?") || input.Contains("how're you?") || input.Contains("how you?"))
             {
-               // ConsoleUIEnhancer.TypingEffect("I'm great, thanks for asking! Ready to help you stay safe online.");
+                // ConsoleUIEnhancer.TypingEffect("I'm great, thanks for asking! Ready to help you stay safe online.");
             }
 
             // Purpose of the bot
