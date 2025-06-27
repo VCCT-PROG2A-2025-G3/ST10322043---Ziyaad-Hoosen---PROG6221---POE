@@ -58,6 +58,7 @@
             this.btnGoToTasks = new System.Windows.Forms.Button();
             this.picLogo = new System.Windows.Forms.PictureBox();
             this.pnlChat = new System.Windows.Forms.Panel();
+            this.lblAssist = new System.Windows.Forms.Label();
             this.lblCyberSecCB = new System.Windows.Forms.Label();
             this.pnlNavChat = new System.Windows.Forms.Panel();
             this.btnNavLog_Chat = new System.Windows.Forms.Button();
@@ -88,7 +89,6 @@
             this.btnNavChat_Log = new System.Windows.Forms.Button();
             this.btnNavHome_Log = new System.Windows.Forms.Button();
             this.logBox = new System.Windows.Forms.RichTextBox();
-            this.lblAssist = new System.Windows.Forms.Label();
             this.grpQuiz.SuspendLayout();
             this.pnlLanding.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
@@ -378,6 +378,16 @@
             this.pnlChat.Name = "pnlChat";
             this.pnlChat.Size = new System.Drawing.Size(1367, 638);
             this.pnlChat.TabIndex = 5;
+            // 
+            // lblAssist
+            // 
+            this.lblAssist.AutoSize = true;
+            this.lblAssist.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.lblAssist.Location = new System.Drawing.Point(28, 494);
+            this.lblAssist.Name = "lblAssist";
+            this.lblAssist.Size = new System.Drawing.Size(207, 20);
+            this.lblAssist.TabIndex = 14;
+            this.lblAssist.Text = "How may i assist you today?";
             // 
             // lblCyberSecCB
             // 
@@ -704,25 +714,15 @@
             this.logBox.TabIndex = 0;
             this.logBox.Text = "";
             // 
-            // lblAssist
-            // 
-            this.lblAssist.AutoSize = true;
-            this.lblAssist.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.lblAssist.Location = new System.Drawing.Point(28, 494);
-            this.lblAssist.Name = "lblAssist";
-            this.lblAssist.Size = new System.Drawing.Size(207, 20);
-            this.lblAssist.TabIndex = 14;
-            this.lblAssist.Text = "How may i assist you today?";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1367, 638);
+            this.Controls.Add(this.pnlLanding);
             this.Controls.Add(this.pnlQuiz);
             this.Controls.Add(this.pnlChat);
             this.Controls.Add(this.pnlLog);
-            this.Controls.Add(this.pnlLanding);
             this.Controls.Add(this.pnlTasks);
             this.Name = "Form1";
             this.Text = "Form1";
